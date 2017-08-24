@@ -6,8 +6,8 @@ app.get('/getInfo', function (req, res) {
 	var str = req.query.name;
 	// http://map.baidu.com/?qt=s&wd="+str
 	// "https://bj.lianjia.com/chengjiao/rs"+str+"/"
-	var url = "http://api.map.baidu.com/place/v2/search?query="+str+"&region=北京&output=json&ak=m1YPA069wCs1pqMusm0ZYgVlnKChbWMz";
-	request(url, function (error, response, body) {
+	var url = encodeURI("http://api.map.baidu.com/place/v2/search?query="+str+"&region=北京&output=json&ak=m1YPA069wCs1pqMusm0ZYgVlnKChbWMz");
+	request(url, function (error,response,body) {
 		let result;
 		if(!error && response && response.statusCode == 200){
 			result = {
