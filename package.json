@@ -23,6 +23,7 @@
   "homepage": "https://github.com/vincent-xw/auto-get-info#readme",
   "dependencies": {
     "express": "^4.15.4",
+    "hbs": "^4.0.1",
     "request": "^2.81.0"
   }
 }
