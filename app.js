@@ -1,5 +1,7 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+// 加载hbs配置
+require("./config/hbs_config");
 
 app.get('/getInfo', function (req, res) {
 	const request = require('request');
@@ -25,6 +27,9 @@ app.get('/getInfo', function (req, res) {
 	});
 
 
+});
+app.get('/', function(req, res){
+  res.send("./dashboard/index.html");
 });
 
 app.get('*', function(req, res){
