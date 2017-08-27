@@ -1,8 +1,8 @@
 module.exports = function(app){
-    app.get('/getInfo', function (req, res) {
+    app.get('/getDistrictInfo', function (req, res) {
         const request = require('request');
         var str = req.query.name;
-        var url = encodeURI("http://api.map.baidu.com/place/v2/search?query="+str+"&region=北京&output=json&ak=m1YPA069wCs1pqMusm0ZYgVlnKChbWMz");
+        var url = encodeURI("https://bj.lianjia.com/xiaoqu/rs"+str+"/");
         request(url, function (error,response,body) {
             let result;
             if(!error && response && response.statusCode == 200){
