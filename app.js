@@ -6,7 +6,7 @@ var hbs_config = require("./config/hbs_config");
 hbs_config(app,express);
 
 // 加载接口配置
-let interface_config = require("./config/interface");
+let interface_config = require("./method/interface");
 
 interface_config(app);
 

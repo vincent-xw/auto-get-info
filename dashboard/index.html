@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cache.amap.com/lbs/static/main.css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/lianjia.css">
+  <link rel="stylesheet" href="css/deal.css">
 
   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=PflxGsKENQwVZP5APoXmCq1Nkni0OwzC"></script>
   <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=43820c717ba7d269aafcd9898a5800a7"></script> 
@@ -68,6 +70,25 @@
                   <button type="button" class="btn btn-default" ng-click="searchDistrict()">搜索</button>
                 </div>
               </form>
+              <div class="col-md-12">
+                  <h4>以下将展示查询出的小区成交信息</h4>
+                  <div class="content">
+                    <div class="leftContent">
+                      <ul class="listContent" log-mod="list" ng-bind-html="districtSaleInfo | to_trusted">
+                      </ul>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                  <h4>以下将展示查询出的小区成交均价</h4>
+                  <ul class="listContent" log-mod="list" ng-bind-html="districtInfo | to_trusted">
+
+                  </ul>
+                  <div class="clearfix"></div>
+                  <h4>以下将展示查询出的小区经纪人信息</h4>
+                  <div class="brokerList" id="brokerList" log-mod="xiaoqu_detail_diamond-many">
+                    <ul ng-bind-html=""></ul>
+                  </div>
+              </div>
         </div>
       </div>
     </div>

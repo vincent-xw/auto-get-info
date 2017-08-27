@@ -1,5 +1,12 @@
 var app = angular.module('app', []);
-app.controller("main",["$scope",function($scope){
+app.filter(
+    'to_trusted', ['$sce', function ($sce) {
+        return function (text) {
+            return $sce.trustAsHtml(text);
+        }
+    }]
+);
+app.controller("main",["$scope","$http",function($scope,$http){
     // 百度地图API功能
     var bmap = new BMap.Map("baidu");          
     bmap.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
@@ -95,4 +102,35 @@ app.controller("main",["$scope",function($scope){
             },1000);
         }
     }
+
+    // 检索小区信息
+    $scope.searchDistrict = function(){
+        $http.get("/getDistrictSaleInfo?name="+$scope.district).then(
+            
+            function(resp){
+    
+                $scope.districtSaleInfo = resp.data.data;
+    
+            },
+            function(resp){
+    
+                console.log(resp);
+    
+            }
+        );
+        $http.get("/getDistrictInfo?name="+$scope.district).then(
+            
+            function(resp){
+    
+                $scope.districtInfo = resp.data.data;
+    
+            },
+            function(resp){
+    
+                console.log(resp);
+    
+            }
+        );
+    }
+    
 }]);
