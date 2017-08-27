@@ -23,7 +23,7 @@ module.exports = function(app){
 
     });
     app.get('/', function(req, res){
-        res.render("/dashboard/index");
+        res.sendfile("./dashboard/index.html");
     });
 
     app.get('*', function(req, res){
