@@ -1,0 +1,15 @@
+.search{
+    padding-top: 10px;
+}
+.ditu{
+    height: 600px;
+}
+.show{
+    
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    text-align: center;
+    margin-left: -25%;
+}

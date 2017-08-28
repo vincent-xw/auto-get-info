@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/vincent-xw/auto-get-info#readme",
   "dependencies": {
-    "bower": "^1.8.0",
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.15.4",
+    "hbs": "^4.0.1",
     "request": "^2.81.0"
   }
 }
