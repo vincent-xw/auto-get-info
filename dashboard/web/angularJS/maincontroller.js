@@ -90,6 +90,7 @@ app.controller("main",["$scope","$http",function($scope,$http){
         if($scope.index == 2){
             $scope.$apply(function(){
                 $scope.show = true;
+                arr = arr.unique('source');
                 $scope.suggest = arr;
                 $scope.showSuggest = true;
                 console.log(arr);
@@ -113,7 +114,7 @@ app.controller("main",["$scope","$http",function($scope,$http){
     
             },
             function(resp){
-    
+                alert("加载失败，请重新请求，如果反复失败，联系我");
                 console.log(resp);
     
             }
@@ -126,7 +127,7 @@ app.controller("main",["$scope","$http",function($scope,$http){
     
             },
             function(resp){
-    
+                alert("加载失败，请重新请求，如果反复失败，联系我");                
                 console.log(resp);
     
             }
