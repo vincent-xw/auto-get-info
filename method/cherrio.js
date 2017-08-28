@@ -4,17 +4,17 @@ module.exports = function(data,way){
 
     var $ = cheerio.load(data);
     if(way == "sale" ){
-        var str = "";
-        $("ul.listContent li").each(function(){
-            var today = new Date();
-            var dealDay = new Date($(this).find(".dealDate").html());
+        // var str = "";
+        // $("ul.listContent li").each(function(){
+        //     var today = new Date();
+        //     var dealDay = new Date($(this).find(".dealDate").html());
             
-            if(today - dealDay < 15552000000){
+        //     if(today - dealDay < 15552000000){
                 
-                str += "<li>"+$(this).html()+"</li>";
-            }
-        });
-        return str;
+        //         str += "<li>"+$(this).html()+"</li>";
+        //     }
+        // });
+        return $("ul.listContent").html();
     }else if(way == "district"){
         return $("ul.listContent").html();
     }else{
