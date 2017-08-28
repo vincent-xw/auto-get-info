@@ -9,7 +9,7 @@ app.filter(
 app.controller("main",["$scope","$http",function($scope,$http){
     // 百度地图API功能
     var bmap = new BMap.Map("baidu");          
-    bmap.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+    bmap.centerAndZoom(new BMap.Point(116.404, 39.915), 13);
     var local = new BMap.LocalSearch(bmap, {
         renderOptions:{map: bmap},
         onSearchComplete: function(results){
