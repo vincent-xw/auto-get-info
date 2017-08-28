@@ -105,8 +105,10 @@ app.controller("main",["$scope","$http",function($scope,$http){
     }
 
     // 检索小区信息
-    $scope.searchDistrict = function(){
-        $http.get("/getDistrictSaleInfo?name="+$scope.district).then(
+    $scope.searchDistrict = function(str){
+        var name = str || $scope.district;
+        $scope.districtName = name;
+        $http.get("/getDistrictSaleInfo?name="+name).then(
             
             function(resp){
     
@@ -119,7 +121,7 @@ app.controller("main",["$scope","$http",function($scope,$http){
     
             }
         );
-        $http.get("/getDistrictInfo?name="+$scope.district).then(
+        $http.get("/getDistrictInfo?name="+name).then(
             
             function(resp){
     

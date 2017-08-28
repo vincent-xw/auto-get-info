@@ -43,7 +43,7 @@
           <div id="baidu" class="ditu col-md-6"></div>
         </div>
         <div class="col-md-12" ng-class="{'hidden':!showSuggest}">
-          <h4>以下是根据查询结果自动筛选出的小区名称，会存在不准确情况</h4>
+          <h4>以下是根据查询结果自动筛选出的小区名称，会存在不准确情况<small>表格支持点击查询了，查询的关键词会显示在下面的结果标题上</small></h4>
           <table class="table table-striped table-hover ">
             <thead>
               <tr>
@@ -53,7 +53,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="data in suggest">
+              <tr ng-repeat="data in suggest" ng-click="searchDistrict(data.name)">
                 <td ng-bind="$index+1"></td>
                 <td ng-bind="data.name"></td>
                 <td ng-bind="data.source"></td>
@@ -71,7 +71,7 @@
                 </div>
               </form>
               <div class="col-md-12">
-                  <h4>以下将展示查询出的小区成交信息</h4>
+                  <h4>以下将展示<span ng-bind="districtName"></span>小区成交信息</h4>
                   <div class="content">
                     <div class="leftContent">
                       <ul class="listContent" log-mod="list" ng-bind-html="districtSaleInfo | to_trusted">
@@ -79,7 +79,7 @@
                       <div class="clearfix"></div>
                     </div>
                   </div>
-                  <h4>以下将展示查询出的小区成交均价</h4>
+                  <h4>以下将展示<span ng-bind="districtName"></span>小区成交均价</h4>
                   <ul class="listContent" log-mod="list" ng-bind-html="districtInfo | to_trusted">
 
                   </ul>
