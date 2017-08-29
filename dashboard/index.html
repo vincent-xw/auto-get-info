@@ -24,11 +24,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">猎人金服房屋查询辅助</a>
+        <a class="navbar-brand" href="javascript:;">猎人金服房屋查询辅助</a>
       </div>
   
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-       
+      <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">请选择(默认地图模块) <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="javascript:;">地图模块</a></li>
+              <li><a href="javascript:;">小区查询</a></li>
+              <li><a href="javascript:;">敬请期待</a></li>
+            </ul>
+          </li>
+        </ul>
         <form class="col-md-5 search" role="search">
           <div class="form-group col-md-10">
             <input type="text" class="form-control " placeholder="请输入需要查询的房屋地址" ng-model="key">
@@ -39,10 +48,39 @@
         </form>
         
         <div class="col-md-12">
-          <div id="gaode" class="ditu col-md-6"></div>
-          <div id="baidu" class="ditu col-md-6"></div>
+          <div class="col-md-2 btn-group ">
+            <a href="javascript:;" ng-click="isShowAmap = !isShowAmap" ng-class="{'btn-success':isShowAmap,'btn-default':!isShowAmap}" class="btn btn-success">高德</a>
+            <a href="javascript:;" ng-click="isShowAmap = !isShowAmap" ng-class="{'btn-success':!isShowAmap,'btn-default':isShowAmap}" class="btn btn-default">百度</a>
+          </div>
+          <div class="col-md-4">
+            <p>左侧切换显示地图，绿色表示选中状态</p>
+          </div>
+          <div class="col-md-12 mpaContainer clearPadding">
+            <div id="gaode" ng-class="{'hidden':isShowAmap}" class="ditu  col-md-6"></div>
+            <div id="baidu" ng-class="{'hidden':!isShowAmap}" class="ditu  col-md-6"></div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">地图交互</h3>
+                  </div>
+                  <div class="panel-body">
+                      <blockquote class="blockquote">
+                        <p>点击地图上的某一楼盘，即可根据服务器返回信息获取小区名称，此项功能经内测能达到相对较准确的程度，不过仍不能保证百分百准确，使用时请务必请加以判断</p>
+                      </blockquote>
+                      <blockquote class="blockquote">
+                        <p>
+                          <span>小区名称:</span> <span>请先在地图上选择</span>
+                        </p>
+                        <p>
+                          <span>详细地址:</span> <span>请先在地图上选择</span>
+                        </p>
+                      </blockquote>
+                  </div>
+                </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-12" ng-class="{'hidden':!showSuggest}">
+        <!-- <div class="col-md-12" ng-class="{'hidden':!showSuggest}">
           <h4>以下是根据查询结果自动筛选出的小区名称，会存在不准确情况<small>表格支持点击查询了，查询的关键词会显示在下面的结果标题上</small></h4>
           <table class="table table-striped table-hover ">
             <thead>
@@ -60,7 +98,7 @@
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> -->
         <div class="col-md-12">
             <form class="col-md-5 search" role="search">
                 <div class="form-group col-md-10">
@@ -97,6 +135,8 @@
     <strong>查询成功!</strong> 请选择下面的搜索结果建议或者自己手动输入小区名称</a>.
   </div>
 </body>
+<script type="text/javascript" src="JavaScript/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="JavaScript/bootstrap.min.js"></script>
 <script type="text/javascript" src="angularJS/angular.min.js"></script>
 
 <script src="angularJS/app.config.js"></script>

@@ -1,3 +1,12 @@
+.mpaContainer{
+    box-sizing: border-box;
+    margin-top: 10px;
+    border: 1px solid #4caf50;
+    border-radius: 5px;
+}
+.clearPadding{
+    padding: 0;
+}
 .search{
     padding-top: 10px;
 }

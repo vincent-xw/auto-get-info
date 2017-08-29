@@ -7,6 +7,8 @@ app.filter(
     }]
 );
 app.controller("main",["$scope","$http",function($scope,$http){
+    // 变量初始化
+    $scope.isShowAmap = true;
     // 百度地图API功能
     var bmap = new BMap.Map("baidu");          
     bmap.centerAndZoom(new BMap.Point(116.404, 39.915), 13);
