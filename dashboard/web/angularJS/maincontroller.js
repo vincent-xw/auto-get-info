@@ -9,6 +9,23 @@ app.filter(
 app.controller("main",["$scope","$http",function($scope,$http){
     // 变量初始化
     $scope.isShowAmap = true;
+    $scope.mapZone = true;
+    $scope.switch = function(type,val){
+        if(type == 'map'){
+            if(val == 'amap'){
+                $scope.isShowAmap = true;
+            }else{
+                $scope.isShowAmap = false;
+            }
+        }else if(type == 'panel'){
+            if(val == 'mapPanel'){
+                $scope.mapZone = true;
+            }else{
+                $scope.mapZone = false;
+            }
+        }
+        $scope[val] = !$scope[val]
+    }
     // 百度地图API功能
     var bmap = new BMap.Map("baidu");          
     bmap.centerAndZoom(new BMap.Point(116.404, 39.915), 13);
@@ -24,8 +41,10 @@ app.controller("main",["$scope","$http",function($scope,$http){
     bmap.enableScrollWheelZoom(true);
 
    // 高德地图api
-   var amap = new AMap.Map("gaode", {
-        resizeEnable: true
+   var amap = new AMap.Map('gaode',{
+        resizeEnable: true,
+        zoom: 13,
+        center: [116.39,39.9]
     });
     var placeSearch;
     AMap.service(["AMap.PlaceSearch"], function() {
@@ -38,7 +57,45 @@ app.controller("main",["$scope","$http",function($scope,$http){
         });
         
     });
+    // 点击解析地址
+    AMap.service('AMap.Geocoder',function(){
+        var geocoder = new AMap.Geocoder({
+            city: "010"//城市，默认：“全国”
+        });
+        var marker = new AMap.Marker({
+            map:amap,
+            bubble:true
+        })
+        $scope.loading = false;
+        amap.on('click',function(e){
+            $scope.$apply(function(){
+                $scope.loading = true;
+            });
+            
+            marker.setPosition(e.lnglat);
+            geocoder.getAddress(e.lnglat,function(status,result){
+                $scope.$apply(function(){
+                    $scope.loading = false;
+                    if(status=='complete'){
+                        if(result.regeocode.addressComponent.neighborhoodType && result.regeocode.addressComponent.neighborhoodType.indexOf("小区") != -1){
+                            $scope.mapDistrict = result.regeocode.addressComponent.neighborhood;
+                            $scope.detailAddress = result.regeocode.formattedAddress;
+                        }else{
+                            $scope.mapDistrict = "没有获取到有效的小区信息";
+                            $scope.detailAddress = "";
+                        }
+                    
+                    }else{
+                        $scope.mapDistrict = "获取失败请刷新重试";
+                    }
+                });
+                
+            })
+        })
+        
+       
 
+    });
     // 地图检索功能
     $scope.searchPoint = function(){
         $scope.index = 0;
