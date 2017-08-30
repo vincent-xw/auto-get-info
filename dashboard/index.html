@@ -44,7 +44,7 @@
             <input type="text" class="form-control " placeholder="请输入需要查询的房屋地址" ng-model="key">
           </div>
           <div class="form-group col-md-2">
-            <button type="button" class="btn btn-default" ng-click="searchPoint()">搜索</button>
+            <button type="button" class="btn btn-default" ng-disabled="!key" ng-click="searchPoint()">搜索</button>
           </div>
         </form>
         
@@ -74,6 +74,9 @@
                         </p>
                         <p>
                           <span>详细地址:</span> <span ng-bind="detailAddress"></span>
+                        </p>
+                        <p>
+                          <button class="btn btn-success" ng-disabled="!mapDistrict || mapDistrict == '没有获取到有效的小区信息'" ng-click="searchDistrict(mapDistrict)">查询</button>
                         </p>
                       </blockquote>
                   </div>
